@@ -9,3 +9,17 @@ services:
       DEBUG: 1
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+
+  deploy_invoke:
+    image: hashicorp/terraform:light
+    volumes:
+      - "./terraform:/terraform"
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: us-east-1
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      sh -c "/terraform/deploy-run.sh"
+    depends_on:
+      - localstack
