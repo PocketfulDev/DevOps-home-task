@@ -7,12 +7,13 @@ provider "aws" {
   skip_requesting_account_id  = true
 
   endpoints {
-    ec2        = "http://localhost:4566"
-    s3         = "http://localhost:4566"
-    rds        = "http://localhost:4566"
-    iam        = "http://localhost:4566"
-    cloudwatch = "http://localhost:4566"
-    lambda     = "http://localhost:4566"
-    apigateway = "http://localhost:4566"
+    ec2        = "http://localstack:4566"
+    s3         = "http://localstack:4566"
+    rds        = "http://localstack:4566"
+    iam        = "http://localstack:4566"
+    cloudwatch = "http://localstack:4566"
+    lambda     = "http://localstack:4566"
+    apigateway = "http://localstack:4566"
+    sts        = "http://localstack:4566"
   }
 }

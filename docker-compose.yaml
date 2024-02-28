@@ -5,21 +5,30 @@ services:
     ports:
       - "4566:4566"
     environment:
-      SERVICES: lambda,apigateway,iam,logs
+      SERVICES: lambda,apigateway,iam,logs,ec2
       DEBUG: 1
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - localstack-network
 
-  deploy_invoke:
-    image: hashicorp/terraform:light
+  apply:
+    image: hashicorp/terraform:latest
+    platform: linux/arm64
     volumes:
-      - "./terraform:/terraform"
+      - "./:/terraform"
     environment:
-      AWS_ACCESS_KEY_ID: test
-      AWS_SECRET_ACCESS_KEY: test
+      AWS_ACCESS_KEY_ID: mock_access_key
+      AWS_SECRET_ACCESS_KEY: mock_secret_key
       AWS_DEFAULT_REGION: us-east-1
     entrypoint: ["/bin/sh", "-c"]
-    command: >
-      sh -c "/terraform/deploy-run.sh"
+    command: ["./terraform/deploy-run.sh"]
     depends_on:
       - localstack
+    networks:
+      - localstack-network
+
+networks:
+  localstack-network:
+    name: localstack-network
+    driver: bridge

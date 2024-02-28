@@ -2,6 +2,7 @@
 # Apply Terraform configuration
 cd /terraform
 terraform init
+terraform refresh
 terraform apply -auto-approve
 
 # Extract the Lambda function invocation URLs
