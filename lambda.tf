@@ -41,9 +41,9 @@ EOF
 }
 
 output "first_lambda_invoke_url" {
-  value = "http://localhost:4566/restapis/${aws_api_gateway_rest_api.api.id}/test/_user_request_/first-lambda"
+  value = "http://localstack:4566/restapis/${aws_api_gateway_rest_api.api.id}/test/_user_request_/first-lambda"
 }
 
 output "second_lambda_invoke_url" {
-  value = "http://localhost:4566/restapis/${aws_api_gateway_rest_api.api.id}/test/_user_request_/second-lambda"
+  value = "http://localstack:4566/restapis/${aws_api_gateway_rest_api.api.id}/test/_user_request_/second-lambda"
 }
